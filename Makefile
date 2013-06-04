@@ -60,20 +60,22 @@ min: raw
 skins:
 	# skins
 	@ mkdir -p $(SKIN)
-	@ stylus -c -o $(SKIN) skin/styl/*.styl
+	@ stylus -o $(SKIN) skin/styl/*.styl
 	@ sed 's/\.flowplayer/\.minimalist/g' $(SKIN)/minimalist.css >  $(SKIN)/all-skins.css
 	@ sed 's/\.flowplayer/\.functional/g' $(SKIN)/functional.css >> $(SKIN)/all-skins.css
 	@ sed 's/\.flowplayer/\.playful/g' 	$(SKIN)/playful.css >> 	 $(SKIN)/all-skins.css
+	@ sed 's/\.flowplayer/\.cm-video/g' 	$(SKIN)/cm-video.css >> 	 $(SKIN)/all-skins.css
 	@ cp -r skin/img $(SKIN)
 
 
 # work on a single skin (watches changes and processes on the background)
 skin:
-	stylus -c -w -o $(SKIN) skin/styl/$(MAKECMDGOALS).styl
+	stylus -w -o $(SKIN) skin/styl/$(MAKECMDGOALS).styl
 
 minimalist: skin
 functional: skin
 playful: skin
+cm-video: skin
 
 flash:
 	# compile flash
